@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  
+    lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications</title>
+</head>
+<body>
+    <h1>Applications</h1>
+    <hr>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th>Resume</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="item : ${applications}">
+            <td>
+                [[${item.name}]]
+            </td>
+            <td>
+                [[${item.email}]]
+            </td>
+            <td>
+                [[${item.score}]]
+            </td>
+            <td>
+                <a th:href="@{${item.resumeUrl}}">view resume</a>
+            </td>
+            <td>
+                <a th:href="@{/job/application/delete/}+${item.applicationId}" sec:authorize="hasAuthority('HR')">delete application</a>
+            </td>
+            
+        </tr>
+    </table>
+</body>
+</html>

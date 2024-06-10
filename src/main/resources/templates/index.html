@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html  
+    lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <h1>Index</h1>
+    <hr>
+    <div th:if="${session.applied}">
+        <div th:text="${session.applied}"></div>
+        <th:block th:text="${@sessionUtils.removeSessionAttribute('applied')}"></th:block>
+    </div>
+    <table>
+        <tr>
+            <th>Job Title</th>
+            <th>Salary</th>
+            <th>Experince</th>
+            <th>Total InTake</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="item : ${jobs}">
+            <td>
+                [[${item.jobTitle}]]
+            </td>
+            <td>
+                [[${item.salary}]]
+            </td>
+            <td>
+                [[${item.experince}]]
+            </td>
+            <td>
+                [[${item.avaliblePosts}]]
+            </td>
+            <td>
+                <a th:href="@{/job-details/}+${item.id}">view details</a>
+                <a th:href="@{/user/apply/}+${item.id}" sec:authorize="hasAuthority('USER')">Apply</a>
+            </td>
+            
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Job</title>
+</head>
+<body>
+    <form action="" method="post" th:object="${jobDTO}">
+        <p>
+            jobTitle : 
+            <input th:errorclass="error" type="text" name="jobTitle" placeholder="Enter jobTitle" th:value="*{jobTitle}">
+            <span th:errors="*{jobTitle}"></span>
+        </p>
+
+        <p>
+            salary : 
+            <input type="text" name="salary" placeholder="Enter salary" th:value="*{salary}">
+            <span th:errors="*{salary}"></span>
+        </p>
+        
+        <p>
+            experince : 
+            <input type="text" name="experince" placeholder="Enter experince" th:value="*{experince}">
+            <span th:errors="*{experince}"></span>
+        </p>
+       
+        <p>
+            Avalible Posts : 
+            <input type="number" name="avaliblePosts" placeholder="Enter Avalible Posts" th:value="*{avaliblePosts}">
+            <span th:errors="*{avaliblePosts}"></span>
+        </p>
+        <p>
+            jobDiscription
+            <textarea name="jobDiscription" th:value="*{jobDiscription}"></textarea>
+            <span th:errors="*{jobDiscription}"></span>
+        </p>
+        <p>
+            <input type="submit" value="Add">
+        </p>
+    </form>
+</body>
+</html>

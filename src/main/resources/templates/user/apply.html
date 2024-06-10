@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply</title>
+</head>
+
+<body>
+    <form id="form" enctype="multipart/form-data" action="/user/apply" method="post">
+        <div th:if="${jobApplied}">
+            <div>You already applied for this job</div>
+        </div>
+        <p>
+            Job Title :
+            <input type="text" th:value="${job.jobTitle}" readonly="true">
+        </p>
+
+        <p>
+            Resume File :
+            <input type="file" name="file" id="file" required>
+        </p>
+        <input type="hidden" name="jobId" th:value="${jobId}">
+        <input type="hidden" name="score" id="score">
+        <input type="hidden" name="job" id="jd" th:value="${job.jobDiscription}">
+
+        <div th:if="${jobApplied}">
+            <input type="submit" value="apply">
+        </div>
+
+        <span id="loading">appliying......</span>
+    </form>
+    <script>
+        var jd = document.getElementById("jd").value;
+        var file = document.getElementById("file");
+        var form = document.getElementById("form");
+        var loading = document.getElementById("loading");
+        var scoreInput = document.getElementById("score");
+        loading.style.display = "none";
+
+        form.onsubmit = async function (e) {
+            loading.style.display = "block";
+            
+            e.preventDefault();
+            var formData = new FormData();
+            formData.append("file", file.files[0]);
+            formData.append("jd", jd);
+
+            try {
+                const response = await fetch("http://localhost:5000/", {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                console.log(data);
+                scoreInput.value = data.score;
+                form.submit();
+            } catch (error) {
+                console.error(error);
+            }
+
+            console.log("okk");
+        };
+
+    </script>
+</body>
+
+</html>

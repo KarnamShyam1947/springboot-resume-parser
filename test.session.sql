@@ -1,0 +1,42 @@
+-- SELECT 
+--     j.avalible_posts, j.experince, j.job_title, j.job_discription, u.company_address, u.company_name, u.company_website_url, u.email, u.name
+-- FROM 
+--     jobs j
+-- JOIN
+--     users u
+-- ON
+--     j.hr_id = u.id
+-- WHERE
+--     j.id = 1;
+
+-- SELECT
+--     *
+-- FROM
+--     applications a
+-- WHERE
+--     a.job_id = 3
+-- AND
+--     a.user_id = 2;
+
+-- SELECT
+--     a.resume_url, a.id, a.score, u.name, u.email
+-- FROM
+--     applications a
+-- JOIN
+--     users u
+-- ON
+--     a.user_id = u.id
+-- AND
+--     a.job_id = 3;
+
+-- SELECT
+--     a.id, a.score, a.resume_url, j.id, j.job_title, j.experince, j.salary
+-- FROM
+--     applications a
+-- JOIN
+--     jobs j
+-- ON
+--     a.job_id = j.id
+-- AND
+--     a.user_id = 2;
+

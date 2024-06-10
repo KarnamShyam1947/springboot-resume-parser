@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="/process-login" method="post" th:object="${loginDto}">
+
+        <div th:if="${param.error}">
+            <div th:switch="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+                <div th:case="'Bad credentials'">
+                    Invalid user details
+                </div>
+                <div th:case="'User is disabled'">
+                    User account is not activated
+                    <a href="#">click here to resend</a>
+                </div>
+                <div th:case="*">
+                    <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${param.logout}">
+            <span>User Logged out successfully</span>
+        </div>
+
+        <div th:if="${session.userAdded}">
+            <div>User added. Please check your mail and activate account</div>
+            <th:block th:text="${@sessionUtils.removeSessionAttribute('userAdded')}"></th:block>
+        </div>
+
+        <div th:if="${session.token}">
+            <div th:text="${session.token}"></div>
+            <th:block th:text="${@sessionUtils.removeSessionAttribute('token')}"></th:block>
+        </div>
+
+        <div th:if="${session.activate}">
+            <div th:text="${session.activate}"></div>
+            <th:block th:text="${@sessionUtils.removeSessionAttribute('activate')}"></th:block>
+        </div>
+        
+        <div th:if="${session.forgotEmail}">
+            <div th:text="${session.forgotEmail}"></div>
+            <th:block th:text="${@sessionUtils.removeSessionAttribute('forgotEmail')}"></th:block>
+        </div>
+        
+        <div th:if="${session.setPassword}">
+            <div th:text="${session.setPassword}"></div>
+            <th:block th:text="${@sessionUtils.removeSessionAttribute('setPassword')}"></th:block>
+        </div>
+
+        <p>
+            Email : 
+            <input type="text" name="email" placeholder="Enter email" th:value="*{email}">
+        </p>
+        
+        <p>
+            Password : 
+            <input type="password" name="password" placeholder="Enter password" th:value="*{password}">
+        </p>
+        <p>
+            <input type="checkbox" name="remember-me" id="remember"> 
+            <label for="remember">Remember Me</label>
+        </p>
+        <p>
+            <a href="/auth/forgot-password">Forgot Password</a>
+        </p>
+        <p>
+            <input type="submit" value="Login">
+        </p>
+        <hr>
+        <a href="/oauth2/authorization/google">contiune with google</a> <br>
+        <a href="/oauth2/authorization/github">contiune with github</a>
+    </form>
+</body>
+</html>
