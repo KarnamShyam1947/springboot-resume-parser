@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Contact</title>
+
+    <div layout:fragment="content">
+        <div class="inner-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1>Contact</h1>
+                            <span></span>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="office-location-area pt-120 mb-120">
+            <div class="container">
+                <div class="row mb-120">
+                    <div class="col-lg-12 mb-70">
+                        <div class="office-location">
+                            <div class="office-categoty">
+                                <div class="single-category d-lg-block d-none">
+                                    <h5>Main Office</h5>
+                                    <span class="first"></span>
+                                    <p></p>
+                                </div>
+                                <div class="single-category d-lg-block d-none">
+                                    <h5>Office-01</h5>
+                                    <span></span>
+                                    <p></p>
+                                </div>
+                                <div class="single-category d-lg-block d-none">
+                                    <h5>Office-02</h5>
+                                    <span></span>
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div class="row g-lg-4 gy-5">
+                                <div class="col-lg-4">
+                                    <div class="single-category d-lg-none d-flex justify-content-center">
+                                        <h5>Main Office</h5>
+                                    </div>
+                                    <div class="single-location">
+                                        <h5 th:text="#{address.main.address}">Dhaka, Bangladesh</h5>
+                                        <ul>
+                                            <li>
+                                                <div class="icon">
+                                                    <img th:src="@{/images/icon/phone-5.svg}" alt>
+                                                </div>
+                                                <a th:href="@{'tel:' + #{address.main.phone}}">
+                                                    [[#{address.main.phone}]]
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <img th:src="@{/images/icon/location.svg}" alt>
+                                                </div>
+                                                <a th:text="#{address.main.location}">Mirpur DOSH, Avenue-01, Road-02, House-147/148</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="single-category d-lg-none  d-flex justify-content-center">
+                                        <h5>Office-01</h5>
+                                    </div>
+                                    <div class="single-location">
+                                        <h5 th:text="#{address.office-1.address}">New York, USA</h5>
+                                        <ul>
+                                            <li>
+                                                <div class="icon">
+                                                    <img th:src="@{/images/icon/phone-5.svg}" alt>
+                                                </div>
+                                                <a th:href="@{'tel:' + #{address.office-1.phone}}">
+                                                    [[#{address.office-1.phone}]]
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <img th:src="@{/images/icon/location.svg}" alt>
+                                                </div>
+                                                <a th:text="#{address.office-1.location}">New York, Avenue-01, Block-B, House-140/142</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4">
+                                    <div class="single-category d-lg-none d-flex justify-content-center">
+                                        <h5>Office-02</h5>
+                                    </div>
+                                    <div class="single-location">
+                                        <h5 th:text="#{address.office-2.address}">London City, UK</h5>
+                                        <ul>
+                                            <li>
+                                                <div class="icon">
+                                                    <img th:src="@{/images/icon/phone-5.svg}" alt>
+                                                </div>
+                                                <a th:href="@{'tel:' + #{address.office-2.phone}}">
+                                                    [[#{address.office-2.phone}]]
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <img th:src="@{/images/icon/location.svg}" alt>
+                                                </div>
+                                                <a th:text="#{address.office-2.location}">West London, Avenue-05, Block No-C, House-08/10</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-support-area mb-120">
+            <div class="container">
+                <div class="row g-lg-4 gy-5">
+
+                    <div class="col-lg-6">
+                        <div class="contect-content">
+                            <h4>Need Any Help? Contact Us</h4>
+                            <p>Alternatively you can also check for the Company email, phone number and address in the
+                                official website.</p>
+                            <div class="support">
+                                <div class="icon">
+                                    <img th:src="@{/images/icon/footer-support-icon.svg}" alt>
+                                </div>
+                                <div class="content">
+                                    <h5>Support Line:</h5>
+                                    <a th:href="@{'tel:' + #{application.contact}}">
+                                        [[#{application.contact}]]
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="service-available">
+                                <span>N:B</span>
+                                <p>Our Customer Service Available from 9 am to 6 pm
+                                    (Saturday to Thursday) </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="contact-form form-wrapper ">
+                            <form>
+                                <div class="row p-4">
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label for="name">Your Name*</label>
+                                            <div class="input-area">
+                                                <img th:src="@{/images/icon/user-2.svg}" alt>
+                                                <input type="text" id="name" name="name" placeholder="Mr. Jackson Mile">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label for="email">Email*</label>
+                                            <div class="input-area">
+                                                <img th:src="@{/images/icon/email-2.svg}" alt>
+                                                <input type="text" id="email" name="email" placeholder="info@example.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label for="phonenumber">Phone*</label>
+                                            <div class="input-area">
+                                                <img th:src="@{/images/icon/phone-2.svg}" alt>
+                                                <input type="text" id="phonenumber" name="phonenumber"
+                                                    placeholder="+880-17 *** *** **">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-inner mb-25">
+                                            <label for="jobplace">Company Name (Optional)</label>
+                                            <div class="input-area">
+                                                <img th:src="@{/images/icon/company-2.svg}" alt>
+                                                <input type="text" id="jobplace" name="jobplace" placeholder="Company Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-inner mb-40">
+                                            <label for="description">Message</label>
+                                            <textarea name="description" id="description"
+                                                placeholder="Message..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-inner">
+                                            <button class="primry-btn-2 lg-btn w-unset" type="submit">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

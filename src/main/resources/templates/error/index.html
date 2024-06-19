@@ -1,13 +1,33 @@
 <!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | 500</title>
 
-<html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Error</title>
-    </head>
+    <div layout:fragment="content">
 
-    <body>
-        <h1>Unknown Error..! we are trying to fix it</h1>
-        <a href="/">back to home</a>
-    </body>
+        <div class="error-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="error-wrapper">
+                            <div class="error-img">
+                                <img class="img-fluid" th:src="@{/images/bg/500.jpg}" alt>
+                            </div>
+                            <div class="error-content-area text-center">
+                                <h2>Opps... Something went wrong</h2>
+                                <p>Please report the issuse we will try to fix it as fast as possible</p>
+                                <div class="error-btn">
+                                    <a class="primry-btn-2 lg-btn " href="/">Back Homepage</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
 </html>

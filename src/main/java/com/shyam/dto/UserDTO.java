@@ -2,6 +2,7 @@ package com.shyam.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -27,6 +28,9 @@ public class UserDTO {
 
     @NotBlank(message = "Reenter password is requried")
     private String reenterPassword;
+
+    @AssertTrue(message = "please agree to terms and conditions")
+    private boolean tac;
 
     private MultipartFile profilePhoto;
 }

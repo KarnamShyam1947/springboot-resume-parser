@@ -55,5 +55,9 @@ public class MyUserDetails implements UserDetails {
     public int getId() {
         return userEntity.getId();
     }
+    
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
 
 }

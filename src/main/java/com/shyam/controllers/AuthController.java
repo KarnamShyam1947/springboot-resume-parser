@@ -13,7 +13,9 @@ import com.shyam.dto.HRDTO;
 import com.shyam.dto.LoginDTO;
 import com.shyam.dto.PasswordDTO;
 import com.shyam.dto.UserDTO;
+import com.shyam.entities.CompanyEntity;
 import com.shyam.entities.UserEntity;
+import com.shyam.services.CompanyService;
 import com.shyam.services.EmailService;
 import com.shyam.services.UserService;
 
@@ -28,6 +30,7 @@ public class AuthController {
     
     private final UserService userService;
     private final EmailService emailService;
+    private final CompanyService companyService;
 
     @GetMapping("/login")
     public String login(@ModelAttribute("loginDto") LoginDTO loginDTO) {
@@ -66,32 +69,33 @@ public class AuthController {
         return "redirect:/auth/login";
     }
 
-    @GetMapping("/register-hr")
+    @GetMapping("/register-company")
     public String registerHR(@ModelAttribute("userDto") HRDTO userDTO) {
-        return "auth/register-hr";
+        return "auth/register-company";
     }
 
-    @PostMapping("/register-hr")
+    @PostMapping("/register-company")
     public String processRegisterHR(
         @Valid @ModelAttribute("userDto") HRDTO user, 
         BindingResult result,
         HttpSession session
     ) {
         if (result.hasErrors()) 
-            return "auth/register-hr";
+            return "auth/register-company";
 
         UserEntity checkUser = userService.getByEmail(user.getEmail());
         if (checkUser != null) {
             result.rejectValue("email", "error.email", "Email already registered us");
-            return "auth/register-hr";
+            return "auth/register-company";
         }
 
         else if(!user.getPassword().equals(user.getReenterPassword())) {
             result.rejectValue("reenterPassword", "error.reenterPassword", "Password and conform password must match");
-            return "auth/register-hr";
+            return "auth/register-company";
         }
         
-        UserEntity registeredUser = userService.registerHR(user);
+        CompanyEntity company = companyService.saveCompany(user);
+        UserEntity registeredUser = company.getHr();
         emailService.sendActivationEmail(registeredUser);
 
         session.setAttribute("userAdded", true);

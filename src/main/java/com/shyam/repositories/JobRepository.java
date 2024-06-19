@@ -5,27 +5,37 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.shyam.dto.JobCompanyDTO;
 import com.shyam.dto.JobDetailsDTO;
 import com.shyam.entities.JobEntity;
 import java.util.List;
 
-
 @Repository
 public interface JobRepository extends JpaRepository<JobEntity, Integer> {
-    // JobEntity findById(int id);
-    List<JobEntity> findByHrId(int hrId);
-    
+    List<JobEntity> findByCompanyId(int companyId);
+
     @Query(value = """
-        SELECT 
-            new com.shyam.dto.JobDetailsDTO(j.avaliblePosts, j.experince, j.jobTitle, j.jobDiscription, u.companyAddress, u.companyName, u.companyWebsiteUrl, u.email, u.name)
-        FROM 
+        SELECT
+            new com.shyam.dto.JobDetailsDTO(j.jobTitle, j.salary, j.jobDiscription, j.jobType, j.endDate, j.experience, j.avaliblePosts, c.id, c.name, c.logoUrl, c.address)
+        FROM
             JobEntity j
         JOIN
-            UserEntity u
+            CompanyEntity c
         ON
-            j.hrId = u.id
-        WHERE
-            j.id = :id
-    """)
-    public JobDetailsDTO getJobDetails(@Param("id") int id);
+            j.companyId = c.id
+        AND
+            j.id = :jobId """)
+    JobDetailsDTO getJobDetails(@Param("jobId") int jobId);
+
+    @Query(value = """
+        SELECT
+            new com.shyam.dto.JobCompanyDTO(j.id, j.jobTitle, j.salary, j.jobType, j.experience, j.endDate, j.avaliblePosts, c.id, c.name, c.address, c.logoUrl)
+        FROM
+            JobEntity j
+        JOIN 
+            CompanyEntity c
+        ON
+            j.companyId = c.id
+            """)
+    List<JobCompanyDTO> getCompanyJobDetails(); 
 }

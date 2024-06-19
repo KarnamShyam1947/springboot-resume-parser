@@ -23,6 +23,17 @@ public class SecurityConfig {
     private final MyUserDetailsService userDetailsService;
     private final CustomOAuthUserService customOAuthUserService;
 
+    private String[] WHITELIST_URLS = {
+        "auth/**",
+        "css/**",
+        "fonts/**",
+        "images/**",
+        "js/**",
+        "webfonts/**",
+        "test",
+        "contact"
+    };
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -49,8 +60,9 @@ public class SecurityConfig {
 
         security.authorizeHttpRequests(
             authorizer -> authorizer
-                            .requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/job/**").hasAuthority("HR")
+                            .requestMatchers(WHITELIST_URLS).permitAll()
+                            .requestMatchers("/company/**").hasAuthority("HR")
+                            .requestMatchers("/jobs/**").hasAuthority("HR")
                             .requestMatchers("/user/**").hasAuthority("USER")
                             .anyRequest().authenticated()
         );

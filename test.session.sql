@@ -1,42 +1,36 @@
--- SELECT 
---     j.avalible_posts, j.experince, j.job_title, j.job_discription, u.company_address, u.company_name, u.company_website_url, u.email, u.name
--- FROM 
+-- SELECT
+--     j.job_title, j.salary, j.job_discription, j.end_date, j.experience, j.avalible_posts, c.id, c.name, c.logo_url, c.address
+-- FROM
 --     jobs j
 -- JOIN
---     users u
+--     companies c
 -- ON
---     j.hr_id = u.id
--- WHERE
---     j.id = 1;
-
--- SELECT
---     *
--- FROM
---     applications a
--- WHERE
---     a.job_id = 3
+--     j.company_id = c.id
 -- AND
---     a.user_id = 2;
+--     j.id = 7;
 
 -- SELECT
---     a.resume_url, a.id, a.score, u.name, u.email
+--     j.id, j.job_title, j.salary, j.job_type, j.experience, j.end_date, j.avalible_posts, c.id, c.name, c.address, c.logo_url
 -- FROM
---     applications a
--- JOIN
---     users u
--- ON
---     a.user_id = u.id
--- AND
---     a.job_id = 3;
-
--- SELECT
---     a.id, a.score, a.resume_url, j.id, j.job_title, j.experince, j.salary
--- FROM
---     applications a
--- JOIN
 --     jobs j
+-- JOIN 
+--     companies c
 -- ON
---     a.job_id = j.id
--- AND
---     a.user_id = 2;
+--     j.company_id = c.id
+
+SELECT
+    a.id, a.score, a.resume_url, j.id, j.job_title, j.salary, c.id, c.name, c.address, c.logo_url
+FROM
+    applications a
+JOIN
+    jobs j 
+ON 
+    a.job_id = j.id
+JOIN
+    companies c 
+ON 
+    j.company_id = c.id
+WHERE
+    a.user_id = 1;
+
 

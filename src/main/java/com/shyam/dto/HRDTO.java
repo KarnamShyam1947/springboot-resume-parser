@@ -2,6 +2,7 @@ package com.shyam.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -29,11 +30,12 @@ public class HRDTO {
 
     private MultipartFile profilePhoto;
 
+    @AssertTrue(message = "please agree to terms and conditions")
+    private boolean tac;
+
     @NotBlank(message = "company name is requried")
     private String companyName;
 
     @NotBlank(message = "company address is requried")
     private String companyAddress;
-
-    private String companyWebsiteUrl;
 }

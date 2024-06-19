@@ -1,5 +1,7 @@
 package com.shyam.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,9 +24,12 @@ public class JobEntity {
     @Column(columnDefinition = "TEXT")
     private String jobDiscription;
 
-    private int hrId;
+    private int companyId;
+
     private String salary;
+    private String jobType;
     private String jobTitle;
-    private String experince;
+    private String experience;
     private int avaliblePosts;
+    private LocalDate endDate; 
 }

@@ -1,7 +1,6 @@
 package com.shyam.controllers;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +14,9 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.shyam.dto.ApplicationDTO;
 import com.shyam.dto.JobDetailsDTO;
-import com.shyam.dto.MyApplications;
 import com.shyam.services.ApplicationService;
 import com.shyam.services.JobService;
+import com.shyam.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -26,16 +25,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-
-    private final ApplicationService applicationService;
+    
     private final JobService jobService;
-
+    private final UserService userService;
+    private final ApplicationService applicationService;
+    
     @GetMapping("/apply/{jobId}")
     public String applyJob(
         @PathVariable("jobId") int jobId,
         Model model
     ) {
-        JobDetailsDTO job = jobService.getJob(jobId);
+        JobDetailsDTO job = jobService.getJobDetails(jobId);
 
         model.addAttribute("job", job);
         model.addAttribute("jobId", jobId);
@@ -56,11 +56,16 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/applications")
-    public String application(Model model) {
-        List<MyApplications> userApplications = applicationService.getUserApplications();
-        model.addAttribute("userApplications", userApplications);
-        return "user/applications";
+    @GetMapping("/dashboard")
+    public String renderDashboard(Model model) {
+        model.addAttribute("user", userService.getCurrentUser());
+        return "user/dashboard";
     }
     
+    @GetMapping("/applications")
+    public String renderApplications(Model model) {
+        model.addAttribute("jobs", applicationService.getCurrentUserApplications());
+        return "user/applications";
+    }
+
 }

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Company Registeration</title>
+
+
+    <div layout:fragment="content">
+        <div class="register-area pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-wrapper">
+                            <div class="form-title">
+                                <h3>Register Account</h3>
+                                <span></span>
+                            </div>
+                            <div class="register-tab">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <button class="nav-link">
+                                            <a href="/auth/register">Candidate</a>
+                                        </button>
+                                        <button class="nav-link active">Company</button>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                        aria-labelledby="nav-home-tab">
+                                        <form action="/auth/register-company" method="post" th:object="${userDto}">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="username">User Name*</label>
+                                                        <div 
+                                                            class="input-area"
+                                                            th:classappend="${#fields.hasErrors('name')} ? 'error' : '' ">
+
+                                                            <img th:src="@{/images/icon/user-2.svg}" alt>
+                                                            <input 
+                                                                type="text" 
+                                                                id="username" 
+                                                                name="name"
+                                                                th:field="*{name}"
+                                                                placeholder="Enter your name">
+                                                        </div>
+                                                        <span class="text-danger" th:errors="*{name}"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6  mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="email">Email*</label>
+                                                        <div 
+                                                            class="input-area"
+                                                            th:classappend="${#fields.hasErrors('email')} ? 'error' : '' ">
+
+                                                            <img th:src="@{/images/icon/email-2.svg}" alt>
+                                                            <input 
+                                                                type="text" 
+                                                                id="email1" 
+                                                                name="email"
+                                                                th:field="*{email}"
+                                                                placeholder="Enter email">
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{email}"></span>
+                                                </div>
+
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="companyName">Company Name*</label>
+                                                        <div 
+                                                            class="input-area"
+                                                            th:classappend="${#fields.hasErrors('companyName')} ? 'error' : '' ">
+                                                            <img th:src="@{/images/icon/company-2.svg}" alt>
+                                                            <input 
+                                                                type="text" 
+                                                                id="companyName" 
+                                                                name="companyName"
+                                                                th:field="*{companyName}"
+                                                                placeholder="Enter your company name">
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{companyName}"></span>
+                                                </div>
+
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner">
+                                                        <label>Company Address*</label>
+                                                        <div 
+                                                            class="input-area"
+                                                            th:classappend="${#fields.hasErrors('companyAddress')} ? 'error' : '' ">
+                                                            <img th:src="@{/images/icon/category-2.svg}" alt>
+                                                            <input 
+                                                                type="text" 
+                                                                id="companyAddress" 
+                                                                name="companyAddress"
+                                                                th:field="*{companyAddress}"
+                                                                placeholder="Enter your company address">
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{companyAddress}"></span>
+                                                </div>
+
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="password">Password*</label>
+                                                        <input 
+                                                            type="password" 
+                                                            name="password" 
+                                                            id="password3"
+                                                            th:field="*{password}"
+                                                            th:errorclass="error"
+                                                            placeholder="Enter your Password" />
+                                                        <i class="bi bi-eye-slash" id="togglePassword3"></i>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{password}"></span>
+                                                </div>
+
+                                                <div class="col-md-6  mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="password4">Confirm Password*</label>
+                                                        <input 
+                                                            type="password" 
+                                                            id="password4"
+                                                            name="reenterPassword" 
+                                                            th:field="*{reenterPassword}"
+                                                            th:errorclass="error"
+                                                            placeholder="Confirm Password" />
+                                                        <i class="bi bi-eye-slash" id="togglePassword4"></i>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{reenterPassword}"></span>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div
+                                                        class="form-agreement form-inner d-flex justify-content-between flex-wrap">
+                                                        <div class="form-group two">
+                                                            <input type="checkbox" id="html1" name="tac">
+                                                            <label for="html1">Here, I will agree company <a href="#">terms &
+                                                                conditions.</a></label>
+                                                            <span class="text-danger" th:errors="*{tac}"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-inner">
+                                                        <button class="primry-btn-2" type="submit">Sign Up</button>
+                                                    </div>
+                                                </div>
+                                                <h6>Already have an account? <a href="/auth/login"> Login</a> Here</h6>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>

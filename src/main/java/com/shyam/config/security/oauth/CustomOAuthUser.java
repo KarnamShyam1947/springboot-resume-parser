@@ -33,5 +33,9 @@ public class CustomOAuthUser implements OAuth2User {
     public String getName() {
         return oAuth2User.getName();
     }
+
+    public UserEntity getUserEntity() {
+        return oAuth2User;
+    }
     
 }

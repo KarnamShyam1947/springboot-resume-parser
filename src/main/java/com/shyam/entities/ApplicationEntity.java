@@ -25,4 +25,5 @@ public class ApplicationEntity {
     private String uuid;
     private double score;
     private String resumeUrl;
+    
 }

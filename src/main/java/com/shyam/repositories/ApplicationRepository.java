@@ -1,18 +1,37 @@
 package com.shyam.repositories;
 
-import java.util.*;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.shyam.dto.MyApplications;
 import com.shyam.dto.UserApplicationDTO;
 import com.shyam.entities.ApplicationEntity;
+import java.util.List;
+
 
 @Repository
 public interface ApplicationRepository extends JpaRepository<ApplicationEntity, Integer> {
+    List<ApplicationEntity> findByJobId(int jobId);
+
+    @Query(value = """
+        SELECT
+            new com.shyam.dto.UserApplicationDTO(a.id, a.score, a.resumeUrl, j.id, j.jobTitle, j.salary, c.id, c.name, c.address, c.logoUrl)
+        FROM
+            ApplicationEntity a
+        JOIN
+            JobEntity j 
+        ON 
+            a.jobId = j.id
+        JOIN
+            CompanyEntity c 
+        ON 
+            j.companyId = c.id
+        WHERE
+            a.userId = :userId
+            """)
+    public List<UserApplicationDTO> getUserApplications(@Param("userId") int userId);
+
     @Query(value = 
     """
         SELECT
@@ -24,31 +43,4 @@ public interface ApplicationRepository extends JpaRepository<ApplicationEntity, 
         AND
             a.userId = :userId""")
     public List<ApplicationEntity> isUserApplied(@Param("jobId") int jobId, @Param("userId") int usedId);
-
-    @Query(value = """
-        SELECT
-            new com.shyam.dto.UserApplicationDTO(a.id, a.score, a.resumeUrl, u.name, u.email)
-        FROM
-            ApplicationEntity a
-        JOIN
-            UserEntity u
-        ON
-            a.userId = u.id
-        AND
-            a.jobId = :jobId""")
-    public List<UserApplicationDTO> getApplications(@Param("jobId") int jobId);
-
-    @Query(value = """
-        SELECT
-            new com.shyam.dto.MyApplications(a.id, a.score, a.resumeUrl, j.id, j.jobTitle, j.experince, j.salary)
-        FROM
-            ApplicationEntity a
-        JOIN
-            JobEntity j
-        ON
-            a.jobId = j.id
-        AND
-            a.userId = :userId
-            """)
-    public List<MyApplications> getUserApplications(@Param("userId") int userId);
 }
