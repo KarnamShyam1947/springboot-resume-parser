@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Login</title>
+
+    <div layout:fragment="content">
+        <div class="login-area pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-wrapper">
+                            <div class="form-title">
+                                <h3>Log In Here!</h3>
+                                <span></span>
+                            </div>
+                            <form action="/process-login" method="post" th:object="${loginDto}">
+
+                                <div th:if="${param.error}">
+                                    <div class="alert alert-danger" role="alert" >
+                                        <div th:switch="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+                                            <div th:case="'Bad credentials'">
+                                                Invalid user details
+                                            </div>
+                                            <div th:case="'User is disabled'">
+                                                User account is not activated
+                                                <a href="#">click here to resend</a>
+                                            </div>
+                                            <div th:case="*">
+                                                <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div th:if="${session.token}" th:text="${session.token}" class="alert alert-warning" role="alert" ></div>
+                                <th:block th:text="${@sessionUtils.removeSessionAttribute('token')}"></th:block>
+
+                                <div th:if="${session.activate}" th:text="${session.activate}" class="alert alert-warning" role="alert" ></div>
+                                <th:block th:text="${@sessionUtils.removeSessionAttribute('activate')}"></th:block>
+
+                                <div th:if="${session.forgotEmail}" th:text="${session.forgotEmail}" class="alert alert-warning"  role="alert"></div>
+                                <th:block th:text="${@sessionUtils.removeSessionAttribute('forgotEmail')}"></th:block>
+
+                                <div th:if="${session.setPassword}" th:text="${session.setPassword}" class="alert alert-warning"  role="alert"></div>
+                                <th:block th:text="${@sessionUtils.removeSessionAttribute('setPassword')}"></th:block>
+
+                                <div th:if="${session.userAdded}" class="alert alert-success" role="alert">User added. Please check your mail and activate account</div>
+                                <th:block th:text="${@sessionUtils.removeSessionAttribute('userAdded')}"></th:block>
+
+                                <div class="alert alert-success" role="alert" th:if="${param.logout}">User Logged out successfully</div>
+                            
+                                
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-inner mb-25">
+                                            <label for="email">Email*</label>
+                                            <div  class="input-area" >
+
+                                                <img th:src="@{/images/icon/email-2.svg}" alt>
+                                                <input 
+                                                    type="email" 
+                                                    id="email" 
+                                                    name="email" 
+                                                    placeholder="Enter your email"
+                                                    th:value="*{email}">
+                                            </div>
+                                        </div>
+                                        <span class="text-danger" th:errors="*{email}"></span>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-inner mb-25">
+                                            <label for="password">Password*</label>
+                                            <div  class="input-area" >
+                                                <input 
+                                                    type="password" 
+                                                    name="password" 
+                                                    id="password" 
+                                                    th:field="*{password}"
+                                                    placeholder="Enter your Password" />
+
+                                                <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger" th:errors="*{password}"></span>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
+                                            <div class="form-group">
+                                                <input name="remember-me" type="checkbox" id="html">
+                                                <label for="html">Remember Me</label>
+                                            </div>
+                                            <a href="/auth/forgot-password" class="forgot-pass">Forget Password?</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-inner">
+                                            <button class="primry-btn-2" type="submit">LogIn</button>
+                                        </div>
+                                    </div>
+                                    <h6>Don't have an account? <a href="/auth/register">Sign Up</a></h6>
+                                    <div class="login-difarent-way">
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <a href="/oauth2/authorization/google"><img
+                                                        th:src="@{/images/icon/google1.svg}" alt>Log in with
+                                                    Google</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="/oauth2/authorization/github"><img
+                                                        th:src="@{/images/icon/github-2.png}" alt>Log in with
+                                                    Github</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>

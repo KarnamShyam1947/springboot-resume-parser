@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html  
+    lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"  >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <h1>HR Dashboard</h1>
+    <hr>
+    <div th:if="${session.jobAdded}">
+        <div th:text="${session.jobAdded}"></div>
+        <th:block th:text="${@sessionUtils.removeSessionAttribute('jobAdded')}"></th:block>
+    </div>
+    
+    <div th:if="${session.jobDeleted}">
+        <div th:text="${session.jobDeleted}"></div>
+        <th:block th:text="${@sessionUtils.removeSessionAttribute('jobDeleted')}"></th:block>
+    </div>
+    <table>
+        <tr>
+            <th>Job Title</th>
+            <th>Salary</th>
+            <th>Experince</th>
+            <th>Total InTake</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="item : ${jobs}">
+            <td>
+                [[${item.jobTitle}]]
+            </td>
+            <td>
+                [[${item.salary}]]
+            </td>
+            <td>
+                [[${item.experince}]]
+            </td>
+            <td>
+                [[${item.avaliblePosts}]]
+            </td>
+            <td>
+                <a th:href="@{/job/application/}+${item.id}" sec:authorize="hasAuthority('HR')">see applications</a>
+                <a th:href="@{/job/delete/}+${item.id}" sec:authorize="hasAuthority('HR')">delete job post</a>
+            </td>
+            
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Job Details</title>
+
+    <div layout:fragment="content">
+
+        <div class="inner-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1>Job Details</h1>
+                            <span></span>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Job Details</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="job-details-pages pt-120 mb-120">
+            <div class="container">
+                <div class="row g-lg-4 gy-5">
+                    <div class="col-lg-8">
+                        <div class="job-details-content">
+                            <div class="job-list-content">
+                                <div class="company-area">
+                                    <div class="logo">
+                                        <img th:src="@{${job.getLogoUrl()}}" alt>
+                                    </div>
+                                    <div class="company-details">
+                                        <div class="name-location">
+                                            <h5><a href="#">[[${job.getJobTitle()}]]</a></h5>
+                                            <p>[[${job.getCompanyName()}]]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="job-discription">
+                                    <ul class="one">
+                                        <li>
+                                            <img th:src="@{/images/icon/map-2.svg}" alt>
+                                            <p><span class="title">Location:</span> [[${job.getCompanyAddress()}]]</p>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <img th:src="@{/images/icon/company-2.svg}" alt>
+                                            <p><span class="title">Job Type:</span> [[${job.getJobType()}]]</p>
+                                        </li>
+                                        <li>
+                                            <img th:src="@{/images/icon/salary-2.svg}" alt>
+                                            <p><span class="title">Salary:</span> [[${job.getSalary()}]]</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p><span>Job Title:</span> [[${job.getJobTitle()}]]. </p>
+                            <br>
+                            <h6>Job Description:</h6> 
+                            <span th:utext="${job.getJobDiscription()}"></span>
+                            <h6>Experiences:</h6>
+                            <ul>
+                                <li>[[${job.getExperince()}]] in this field.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="job-details-sidebar mb-120">
+                            <div class="save-apply-btn d-flex justify-content-end mb-50">
+                                <ul>
+                                    <li>
+                                        <a 
+                                            sec:authorize="hasAuthority('USER')" 
+                                            class="primry-btn-2 lg-btn" 
+                                            th:href="@{/user/apply/}+${job.jobId}">Apply Position</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="job-summary-area mb-50">
+                                <div class="job-summary-title">
+                                    <h6>Job Summary:</h6>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <p><span class="title">Expiration:</span> [[${job.getEndDate()}]].</p>
+                                    </li>
+                                    <li>
+                                        <p><span class="title">Vacancy:</span> [[${job.getAvaliblePosts()}]].</p>
+                                    </li>
+                                    <li>
+                                        <p><span class="title">Experiences:</span> [[${job.getExperince()}]].</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="view-job-btn mb-30">
+                                <a th:href="@{/company-details/}+${job.getCompanyId()}"><img th:src="@{/images/icon/company-2.svg}" alt>View Company</a>
+                            </div>
+    
+                            <div class="email-area mb-50">
+                                <div class="title">
+                                    <h6><img th:src="@{/images/icon/email-2.svg}" alt>Email Now</h6>
+                                </div>
+                                <p>Any quries <a href="mailto:info@exmaple.com">info@example.com</a>
+                                </p>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

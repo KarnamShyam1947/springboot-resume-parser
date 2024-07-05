@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Home</title>
+
+    <div layout:fragment="content">
+
+        <div class="hero1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hero-content">
+                            <h1>Your Career’s <span>Opportunity.</span></h1>
+                            <p><span>2400</span> Peoples are daily search in this portal, <span>100</span> user added job
+                                portal!</p>
+                            <div class="counter-area">
+                                <div class="row g-lg-4 g-md-5 gy-5 justify-content-center">
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="counter-single">
+                                            <div class="counter-icon">
+                                                <img th:src="@{/images/icon/job2.svg}" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Live Jobs</p>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <h3 class="odometer">
+                                                        20223
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="counter-single">
+                                            <div class="counter-icon">
+                                                <img th:src="@{/images/icon/companies.svg}" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Companies</p>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <h3 class="odometer">
+                                                        804
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="counter-single">
+                                            <div class="counter-icon">
+                                                <img th:src="@{/images/icon/candidates.svg}" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>Candidates</p>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <h3 class="odometer">
+                                                        500
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="counter-single">
+                                            <div class="counter-icon">
+                                                <img th:src="@{/images/icon/new-jobs.svg}" alt="image">
+                                            </div>
+                                            <div class="coundown">
+                                                <p>New Jobs</p>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <h3 class="odometer">
+                                                        102
+                                                    </h3>
+                                                    <span>+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="job-search-area">
+                                <form>
+                                    <div class="form-inner job-title">
+                                        <input type="text" placeholder="Job Title">
+                                    </div>
+                                    <div class="form-inner">
+                                        <button type="submit" class="primry-btn-2 "><img
+                                                th:src="@{/images/icon/search-icon.svg}" alt> Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home1-featured-area mb-120">
+            <div class="container">
+                <div class="row mb-60">
+                    <div
+                        class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
+                        <div class="section-title1">
+                            <h2>Latest <span>Featured</span> Jobs</h2>
+                            <p>To choose your trending job dream & to make future bright.</p>
+                        </div>
+                        <div class="explore-btn">
+                            <a href="job-listing1.html">Explore More <span><img th:src="@{/images/icon/explore-elliose.svg}"
+                                        alt></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+
+                    <div th:each="item : ${jobs}" class="col-xl-4 col-lg-6">
+                        <div class="feature-card">
+                            <div class="company-area">
+                                <div class="company-details">
+                                    <div class="name-location">
+                                        <h5><a th:href="@{/job-details/}+${item.getId()}">[[${item.getJobTitle()}]]</a></h5>
+                                        <p>[[${item.getJobType()}]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="job-discription">
+                                <ul>
+                                    <li>
+                                        <img th:src="@{/images/icon/arrow2.svg}" alt>
+                                        <p><span class="title">Salary:</span> [[${item.getSalary()}]]
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/icon/arrow2.svg}" alt>
+                                        <p><span class="title">Vacancy:</span> <span> [[${item.getAvaliblePosts()}]]</span></p>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/icon/arrow2.svg}" alt>
+                                        <p><span class="title">Deadline:</span> <span>[[${item.getEndDate()}]]</span></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="job-type-apply">
+                                <div class="apply-btn">
+                                    <a th:href="@{/job-details/}+${item.getId()}"><span><img th:src="@{/images/icon/apply-ellipse.svg}"
+                                                alt></span>Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="home1-work-process mb-120">
+            <div class="container">
+                <div class="row mb-60">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="section-title1 text-center">
+                            <h2>JOBES Working <span>Process</span></h2>
+                            <p>To choose your trending job dream & to make future bright.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-lg-4 gy-5 justify-content-center">
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="single-work-process one text-center">
+                            <div class="icon">
+                                <img th:src="@{/images/icon/account-create.svg}" alt>
+                            </div>
+                            <div class="work-content">
+                                <h5><a href="register.html">Account Create</a></h5>
+                                <p>To create your account be confident & safely.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="single-work-process two text-center">
+                            <div class="icon">
+                                <img th:src="@{/images/icon/create-resume.svg}" alt>
+                            </div>
+                            <div class="work-content">
+                                <h5><a href="edit-profile.html">Create Resume</a></h5>
+                                <p>To create your account be confident & safely.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="single-work-process one text-center">
+                            <div class="icon">
+                                <img th:src="@{/images/icon/job-find.svg}" alt>
+                            </div>
+                            <div class="work-content">
+                                <h5><a href="job-listing1.html">Find Jobs </a></h5>
+                                <p>To create your account be confident & safely.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="single-work-process two text-center">
+                            <div class="icon">
+                                <img th:src="@{/images/icon/job-apply.svg}" alt>
+                            </div>
+                            <div class="work-content">
+                                <h5><a href="job-listing1.html">Apply Jobs</a></h5>
+                                <p>To create your account be confident & safely.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home1-review-area mb-120">
+            <div class="container">
+                <div class="row mb-60">
+                    <div
+                        class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
+                        <div class="section-title1">
+                            <h2>Trusted User <span>Reviews</span></h2>
+                            <p>To choose your trending job dream & to make future bright.</p>
+                        </div>
+                        <div class="swiper-btn1 d-flex align-items-center">
+                            <div class="left-btn prev-2">
+                                <img th:src="@{/images/icon/explore-elliose.svg}" alt>
+                            </div>
+                            <div class="right-btn next-2">
+                                <img th:src="@{/images/icon/explore-elliose.svg}" alt>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="swiper testimonial-slider1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="author-img">
+                                        <img th:src="@{/images/bg/testimonial-author1.png}" alt>
+                                        <div class="quat-icon">
+                                            <img th:src="@{/images/icon/quat-icon.svg}" alt>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-content">
+                                        <div class="author-review-area">
+                                            <div class="author-area">
+                                                <h5>Jacoline Frangly</h5>
+                                                <span>React Developer</span>
+                                            </div>
+                                            <ul>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                        <p>On the other hand, we denounce with to the righteous indignation and dislike the
+                                            men who are so beguiled to demoralized by the charms of pleasure.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="author-img">
+                                        <img th:src="@{/images/bg/testimonial-author2.png}" alt>
+                                        <div class="quat-icon">
+                                            <img th:src="@{/images/icon/quat-icon.svg}" alt>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-content">
+                                        <div class="author-review-area">
+                                            <div class="author-area">
+                                                <h5>Jordan Miycol</h5>
+                                                <span>UI/UX Engineer</span>
+                                            </div>
+                                            <ul>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-fill"></i></li>
+                                                <li><i class="bi bi-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                        <p>On the other hand, we denounce with to the righteous indignation and dislike the
+                                            men who are so beguiled to demoralized by the charms of pleasure.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home1-trusted-company mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h5>Our Trusted Company</h5>
+                        </div>
+                        <div class="swiper trusted-company-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="company-logo">
+                                        <img th:src="@{/images/bg/company-logo/trusted-company-01.png}" alt>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="company-logo">
+                                        <img th:src="@{/images/bg/company-logo/trusted-company-02.png}" alt>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="company-logo">
+                                        <img th:src="@{/images/bg/company-logo/trusted-company-03.png}" alt>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="company-logo">
+                                        <img th:src="@{/images/bg/company-logo/trusted-company-04.png}" alt>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="company-logo">
+                                        <img th:src="@{/images/bg/company-logo/trusted-company-05.png}" alt>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="company-logo">
+                                        <img th:src="@{/images/bg/company-logo/trusted-company-06.png}" alt>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home1-top-recruiters mb-120">
+            <div class="container">
+                <div class="row mb-60">
+                    <div
+                        class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
+                        <div class="section-title1">
+                            <h2>Our Top <span>Recruiters</span></h2>
+                            <p>To choose your trending job dream & to make future bright.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="slick-wrapper">
+                        <div id="slick1">
+
+                            <div class="slide-item" th:each="item : ${companies}">
+                                <div class="recruters-card">
+                                    <div class="company-area">
+                                        <div class="logo">
+                                            <img th:src="@{${item.getLogoUrl()}}" alt>
+                                        </div>
+                                        <div class="name-location">
+                                            <h5><a th:href="@{/company-details/}+${item.getId()}">[[${item.getName()}]]</a></h5>
+                                            <p><img th:src="@{/images/icon/location.svg}" alt> [[${item.getAddress()}]]</p>
+                                            <p><img th:src="@{/images/icon/person-2.svg}" alt> [[${item.getEmail()}]]</p>
+                                        </div>
+                                    </div>
+                                    <div class="job-details-vacancies">
+                                        <div class="vacancies">
+                                            <!-- <p>Vacancies: <span>21</span></p> -->
+                                        </div>
+                                        <div class="apply-btn">
+                                            <a th:href="@{/company-details/}+${item.getId()}"><span><img
+                                                        th:src="@{/images/icon/apply-ellipse.svg}" alt></span>View
+                                                Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Company Details</title>
+
+    <div layout:fragment="content">
+        
+        <div class="inner-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1>Company Listing</h1>
+                            <span></span>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Company Listing</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="company-details-area pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="post-thumb">
+                            <img class="img-fluid" th:src="@{${user.getCompany().getBannerUrl()}}" alt>
+                            <div class="company-logo">
+                                <img th:src="@{${user.getCompany().getLogoUrl()}}" alt>
+                            </div>
+                        </div>
+                        <div class="company-area">
+                            <div class="company-info">
+                                <h4 th:text="${user.getName()}">Elite Hangstroman</h4>
+                                <ul>
+                                    <li th:text="${user.getCompany().getAddress()}"><img th:src="@{/images/icon/map-2.svg}" alt> Dhaka, Bangladesh</li>
+                                </ul>
+                            </div>
+                            <div class="company-contact">
+                                <div class="websitet-link">
+                                    <p><img th:src="@{/images/icon/web-5.svg}" alt>Website Link:</p>
+                                    <a th:href="@{${user.getWebsiteUrl()}}">[[${user.getWebsiteUrl()}]]</a>
+                                </div>
+                                <div class="social-area">
+                                    <p><img th:src="@{/images/icon/share-icon.svg}" alt>Follow Company:</p>
+                                    <ul>
+                                        <li><a th:href="@{${user.getFacebook()}}"><i class="bx bxl-facebook"></i></a></li>
+                                        <li><a th:href="@{${user.getTwitter()}}"><i class="bx bxl-twitter"></i></a></li>
+                                        <li><a th:href="@{${user.getLinkedin()}}"><i class="bx bxl-linkedin"></i></a></li>
+                                        <li><a th:href="@{${user.getInstagram()}}"><i class="bx bxl-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="company-details-content">
+                                    <h5>About Company</h5>
+                                    <p th:text="${user.getDescription()}"></p>
+                                    <br><br>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="company-dt-sb mb-60">
+                                    <div class="company-overview-area mb-50">
+                                        <h5>Company Overview:</h5>
+                                        <ul>
+                                            <li><span>Company Name:</span> [[${user.getCompany().getName()}]]</li>
+                                            <li><span>Location:</span> [[${user.getCompany().getAddress()}]]</li>
+                                            <li><span>Total Jobs:</span> [[${jobs.size()}]]</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h4>Latest Jobs:</h4>
+                        </div>
+
+                        <div th:each="item : ${jobs}" class="col-lg-12 mb-30">
+                            <div class="job-listing-card">
+                                <div class="job-top">
+                                    <div class="job-list-content">
+                                        <div class="company-area">
+                                            <div class="logo">
+                                                <img th:src="@{${user.getCompany().getLogoUrl()}}" alt>
+                                            </div>
+                                            <div class="company-details">
+                                                <div class="name-location">
+                                                    <h5><a href="job-details.html">[[${item.getJobTitle()}]]</a></h5>
+                                                    <p><a href="company-details.html">[[${user.getCompany().getName()}]]</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="job-discription">
+                                            <ul>
+                                                <li>
+                                                    <p><span class="title">Location:</span> [[${user.getCompany().getAddress()}]]</p>
+                                                </li>
+                                                <li>
+                                                    <p><span class="title">Salary:</span> [[${item.getSalary()}]]</p>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    <p><span class="title">Experience:</span> [[${item.getExperience()}]]</p>
+                                                </li>
+                                                <li>
+                                                    <p><span class="title">Last Date:</span> [[${item.getEndDate()}]]</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="bookmark">
+                                        <i class="bi bi-bookmark-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="job-type-apply">
+                                    <p><img th:src="@{/images/icon/company-4.svg}" alt> Job Vaciences: <span> [[${item.getAvaliblePosts()}]]</span>
+                                    </p>
+                                    <div class="job-type">
+                                        <span class="light-yellow">[[${item.getJobType()}]]</span>
+                                    </div>
+                                    <div class="apply-btn">
+                                        <a href="job-details.html"><span><img th:src="@{/images/icon/apply-ellipse.svg}"
+                                                    alt></span>Apply Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="pagination-area">
+                            <nav aria-label="...">
+                                <ul class="pagination">
+                                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"></a></li>
+                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">01</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

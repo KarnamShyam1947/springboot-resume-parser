@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Post Job</title>
+
+    <div layout:fragment="content">
+        <div class="job-post-area pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-wrapper">
+                            <form action="" method="post" th:object="${jobDTO}">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="section-title2">
+                                            <h5>Job Information:</h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-25">
+                                        <div class="form-inner">
+                                            <label for="jobtitle">Job Title*</label>
+                                            <div 
+                                                class="input-area"
+                                                th:classappend="${#fields.hasErrors('jobTitle')} ? 'error' : '' ">
+                                                <img th:src="@{/images/icon/company-2.svg}" alt>
+                                                <input 
+                                                    type="text" 
+                                                    id="jobtitle" 
+                                                    name="jobTitle"
+                                                    th:value="*{jobTitle}"
+                                                    placeholder="Enter job title">
+                                            </div>
+                                            <span class="text-danger" th:errors="*{jobTitle}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-25">
+                                        <div class="form-inner">
+                                            <label for="vacancies">Vacancies*</label>
+                                            <div 
+                                                class="input-area"
+                                                th:classappend="${#fields.hasErrors('avaliblePosts')} ? 'error' : '' ">
+
+                                                <img th:src="@{/images/icon/user-2.svg}" alt>
+                                                <input 
+                                                    type="text" 
+                                                    id="vacancies" 
+                                                    name="avaliblePosts" 
+                                                    th:value="*{avaliblePosts}"
+                                                    placeholder="07 Person">
+                                            </div>
+                                            <span class="text-danger" th:errors="*{avaliblePosts}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-inner">
+                                            <div class="salary-wrap">
+                                                <label class="label">Budget/Salary*</label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 mb-25">
+                                                    <div
+                                                        class="input-area "
+                                                        th:classappend="${#fields.hasErrors('salary')} ? 'error' : '' ">
+
+                                                        <img th:src="@{/images/icon/salary-2.svg}" alt>
+                                                        <input 
+                                                            type="text" 
+                                                            name="salary" 
+                                                            th:field="*{salary}"
+                                                            placeholder="Salary" />
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{salary}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-25">
+                                        <div class="form-inner">
+                                            <label>Job Type*</label>
+                                            <div 
+                                                class="input-area"
+                                                th:classappend="${#fields.hasErrors('jobType')} ? 'error' : '' ">
+                                                <img th:src="@{/images/icon/company-2.svg}" alt>
+                                                <select 
+                                                    name="jobType"
+                                                    th:field="*{jobType}" 
+                                                    class="select1">
+
+                                                    <option value="Full Time">Full Time</option>
+                                                    <option value="Part Time">Part Time</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger" th:errors="*{jobType}"></span>
+                                    </div>
+
+                                    <div class="col-md-6 mb-25">
+                                        <div class="form-inner">
+                                            <label for="experiences">Experience Level*</label>
+                                            <div 
+                                                class="input-area"
+                                                th:classappend="${#fields.hasErrors('experience')} ? 'error' : '' ">
+                                                <img th:src="@{/images/icon/email-2.svg}" alt>
+                                                <input 
+                                                    type="text" 
+                                                    id="experiences" 
+                                                    name="experience"
+                                                    th:value="*{experience}"
+                                                    placeholder="Enter experience">
+                                            </div>
+                                            <span class="text-danger" th:errors="*{experience}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-25">
+                                        <div class="form-inner">
+                                            <label for="datepicker9">Deadline*</label>
+                                            <div 
+                                                class="input-area"
+                                                th:classappend="${#fields.hasErrors('endDate')} ? 'error' : '' ">
+                                                <img th:src="@{/images/icon/calender2.svg}" alt>
+                                                <input 
+                                                    type="date" 
+                                                    name="endDate" 
+                                                    th:field="*{endDate}"
+                                                    placeholder="MM/DD/YY">
+                                            </div>
+                                            <span class="text-danger" th:errors="*{endDate}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12  mb-30">
+                                        <div class="form-inner">
+                                            <label for="summernote1">Job Description*</label>
+                                            <textarea name="jobDiscription" id="summernote1"
+                                                placeholder="Something Write Yourself...."></textarea>
+                                        </div>
+                                        <span class="text-danger" th:errors="*{jobDiscription}"></span>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div
+                                            class="form-agreement form-inner d-flex justify-content-between flex-wrap">
+                                            <div class="form-group two">
+                                                <input type="checkbox" id="html1" name="tac">
+                                                <label for="html1">Here, I will agree company 
+                                                    <a href="#">terms & conditions.</a></label>
+                                                <span class="text-danger" th:errors="*{tac}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-inner">
+                                            <button class="primry-btn-2 lg-btn w-unset" type="submit">Post Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

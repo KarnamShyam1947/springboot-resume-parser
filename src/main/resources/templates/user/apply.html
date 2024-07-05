@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Apply</title>
+
+    <div layout:fragment="content">
+        <div class="login-area pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-wrapper">
+                            <div class="form-title">
+                                <h3>Apply Here..!</h3>
+                                <span></span>
+                            </div>
+                            <form id="form" enctype="multipart/form-data" action="/user/apply" method="post">                                
+                                <div class="row">
+                                    <div class="col-lg-12 mb-25">
+                                        <div class="form-inner">
+                                            <label for="email">Job Title*</label>
+                                            <input readonly th:value="${job.jobTitle}" type="text" />
+                                           
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-lg-12">
+                                        <div class="form-inner mb-25">
+                                            <label for="email">Resume*</label>
+                                            <div class="input-area">
+                                                <input type="file" id="file" name="file">
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div th:if="${jobApplied}" class="alert alert-primary" role="alert">
+                                        you already applied for this role
+                                    </div>
+
+                                    <div th:unless="${jobApplied}" id="submitBtn" class="col-lg-12">
+                                        <div class="form-inner">
+                                            <button class="primry-btn-2" type="submit">Apply</button>
+                                        </div>
+                                    </div>
+    
+                                    <div id="loading" class="col-lg-12">
+                                        <button class="btn primry-btn-2" type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                            <span class="ps-2 fw-bold" role="status">Applying...</span>
+                                        </button>
+                                    </div>  
+
+                                    <input type="hidden" name="jobId" th:value="${jobId}">
+                                    <input type="hidden" id="serviceUrl" name="serviceUrl" th:value="${serviceUrl}">
+                                    <input type="hidden" name="score" id="score">
+                                    <input type="hidden" name="job" id="jd" th:value="${job.jobDiscription}">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script layout:fragment="script">
+        var jd = document.getElementById("jd").value;
+        var file = document.getElementById("file");
+        var form = document.getElementById("form");
+        var loading = document.getElementById("loading");
+        var scoreInput = document.getElementById("score");
+        var submitBtn = document.getElementById("submitBtn");
+        var serviceUrl = document.getElementById("serviceUrl");
+        loading.style.display = "none";
+
+        form.onsubmit = async function (e) {
+            loading.style.display = "block";
+            submitBtn.style.display = "none";
+            
+            e.preventDefault();
+            var formData = new FormData();
+            formData.append("file", file.files[0]);
+            formData.append("jd", jd);
+
+            try {
+                const response = await fetch(serviceUrl.value, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                console.log(data);
+                scoreInput.value = data.score;
+                form.submit();
+            } catch (error) {
+                console.error(error);
+            }
+
+            console.log("okk");
+        };
+
+    </script>
+
+</html>

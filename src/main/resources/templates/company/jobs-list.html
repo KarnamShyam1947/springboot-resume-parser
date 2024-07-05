@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Company Jobs List</title>
+
+    <div layout:fragment="content">
+        <div class="dashboard-area company-dashboard pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-12">
+                        <div class="table-wrapper2">
+                            <div class="title-and-btn">
+                                <div class="title">
+                                    <h4>Latest Job List:</h4>
+                                </div>
+                                <div class="job-post-btn">
+                                    <a class="primry-btn-2" href="/jobs/add">Create Job Post</a>
+                                </div>
+                            </div>
+                            
+                            <table class="eg-table table job-list-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Job Title</th>
+                                        <th>Total Vacancies</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr th:each="item : ${jobs}">
+                                        <td data-label="Job Title">
+                                            <div class="job-content">
+                                                <h5><a th:href="@{/job-details/}+${item.id}">[[${item.getJobTitle()}]]</a>
+                                                </h5>
+                                                <p><img th:src="@{/images/icon/calender2.svg}" alt><span>Deadline:</span> 
+                                                    [[${item.getEndDate()}]]
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td data-label="Matched">
+                                            <span class="total-number light-orange">[[${item.getAvaliblePosts()}]]</span>
+                                        </td>
+                                        <td data-label="Action">
+                                            <ul class="action-btn-group2">
+                                                <li><a th:href="@{/company/job-details/}+${item.getId()}"
+                                                        class="primry-btn-2  eg-btn green--btn">
+                                                        <svg width="14" height="10" viewBox="0 0 14 10"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M14 5C14 5 11.375 0 7 0C2.625 0 0 5 0 5C0 5 2.625 10 7 10C11.375 10 14 5 14 5ZM1.02637 5C1.44945 4.33193 1.93606 3.70971 2.47887 3.14273C3.605 1.97091 5.145 0.909091 7 0.909091C8.855 0.909091 10.3941 1.97091 11.522 3.14273C12.0648 3.70971 12.5514 4.33193 12.9745 5C12.9237 5.07909 12.8678 5.16636 12.8039 5.26182C12.5108 5.69818 12.0776 6.28 11.522 6.85727C10.3941 8.02909 8.85413 9.09091 7 9.09091C5.145 9.09091 3.60588 8.02909 2.478 6.85727C1.93519 6.29028 1.44946 5.66807 1.02637 5Z" />
+                                                            <path
+                                                                d="M7 2.72721C6.41984 2.72721 5.86344 2.96665 5.4532 3.39287C5.04297 3.81909 4.8125 4.39717 4.8125 4.99993C4.8125 5.6027 5.04297 6.18078 5.4532 6.60699C5.86344 7.03321 6.41984 7.27266 7 7.27266C7.58016 7.27266 8.13656 7.03321 8.5468 6.60699C8.95703 6.18078 9.1875 5.6027 9.1875 4.99993C9.1875 4.39717 8.95703 3.81909 8.5468 3.39287C8.13656 2.96665 7.58016 2.72721 7 2.72721ZM3.9375 4.99993C3.9375 4.15606 4.26016 3.34676 4.83449 2.75005C5.40882 2.15334 6.18777 1.81812 7 1.81812C7.81223 1.81812 8.59118 2.15334 9.16551 2.75005C9.73984 3.34676 10.0625 4.15606 10.0625 4.99993C10.0625 5.8438 9.73984 6.65311 9.16551 7.24982C8.59118 7.84652 7.81223 8.18175 7 8.18175C6.18777 8.18175 5.40882 7.84652 4.83449 7.24982C4.26016 6.65311 3.9375 5.8438 3.9375 4.99993Z" />
+                                                        </svg>
+                                                    </a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+
+                            <div class="pagination-table-info">
+                                <div class="table-info">
+                                    <span>06 Results Showing In 20 Jobs</span>
+                                </div>
+                                <div class="pagination-area">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"></a>
+                                            </li>
+                                            <li class="page-item active" aria-current="page"><a class="page-link"
+                                                    href="#">01</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                            <li class="page-item"><a class="page-link" href="#"></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

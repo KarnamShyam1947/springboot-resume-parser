@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Company Profile Update</title>
+
+    <div layout:fragment="content">
+        <div class="dashboard-area company-dashboard pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="my-profile-inner ">
+                            <div class="form-wrapper">
+                                <div class="section-title two">
+                                    <h5>My Profile</h5>
+                                    <div class="dash"></div>
+                                </div>
+                                <form method="post" th:object="${updateDTO}" class="profile-form" enctype="multipart/form-data">
+                                    <div class="section-title2">
+                                        <h5>Company Information:</h5>
+                                    </div>
+                                    <div class="row">
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="companyname">Company Name*</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/company-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="companyname" 
+                                                        name="companyname"
+                                                        placeholder="readonly">
+                                                </div>
+                                            </div>
+                                        </div>     -->
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="email">Email*</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/email-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="email" 
+                                                        name="email"
+                                                        th:field="*{email}"
+                                                        placeholder="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="location">Location*</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/map-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="location" 
+                                                        name="address"
+                                                        th:field="*{address}"
+                                                        placeholder="Enter Location(render)">
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="website">Website Link*</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/website-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="website" 
+                                                        name="websiteUrl"
+                                                        th:field="*{websiteUrl}"
+                                                        placeholder="https://example.com/(render)">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="facebook">Facebook</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/facebook-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="facebook" 
+                                                        name="facebook"
+                                                        th:field="*{facebook}"
+                                                        placeholder="https://example-facebook.com/">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="twitter">Twitter</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/twiter-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="twitter" 
+                                                        name="twitter"
+                                                        th:field="*{twitter}"
+                                                        placeholder="https://example-twitter.com/">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="linkedin">LinkedIn</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/linkedin-2.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="linkedin" 
+                                                        name="linkedin"
+                                                        th:field="*{linkedin}"
+                                                        placeholder="https://example-linkedin.com/">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="pinterest">Instagram</label>
+                                                <div class="input-area">
+                                                    <img th:src="@{/images/icon/instagram.svg}" alt>
+                                                    <input 
+                                                        type="text" 
+                                                        id="pinterest" 
+                                                        name="instagram"
+                                                        th:field="*{instagram}"
+                                                        placeholder="https://example-pinterest.com/">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="pinterest">Company Logo</label>
+                                                <div class="input-area">
+                                                    <input 
+                                                        type="file"  
+                                                        name="logo" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-inner mb-25">
+                                                <label for="pinterest">Company banner</label>
+                                                <div class="input-area">
+                                                    <input 
+                                                        type="file" 
+                                                        name="banner"/>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-md-12">
+                                            <div class="form-inner mb-50">
+                                                <label>Description*</label>
+                                                <textarea 
+                                                    name="description" 
+                                                    th:field="*{description}"
+                                                    placeholder="Write something about company.........."></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                            <div class="form-inner">
+                                                <button class="primry-btn-2 lg-btn w-unset" type="submit">Update
+                                                    Change</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+</html>

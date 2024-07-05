@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Home</title>
+
+    <div layout:fragment="content">
+        <div class="inner-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-content text-center">
+                            <h1>Job Listing</h1>
+                            <span></span>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Job Listing </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="job-listing-area pt-120 mb-120">
+            <div class="container">
+                <div class="">
+                    <div class="job-listing-wrrap">
+                        <div class="row g-4 mb-25">
+                            <div class="col-lg-6 d-flex align-items-center">
+                                <p class="show-item">Showing results 10 in 200 jobs list</p>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center justify-content-lg-end">
+                                <div class="grid-select-area">
+                                    <div class="grid-area">
+                                        <ul>
+                                            <li><a th:href="@{/jobs}">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M6.26106 6.95674H0.695674C0.311464 6.95674 0 6.64527 0 6.26106V0.695674C0 0.311464 0.311464 0 0.695674 0H6.26106C6.64527 0 6.95674 0.311464 6.95674 0.695674V6.26106C6.95674 6.64527 6.64527 6.95674 6.26106 6.95674Z" />
+                                                        <path
+                                                            d="M15.304 6.95674H9.73864C9.35443 6.95674 9.04297 6.64527 9.04297 6.26106V0.695674C9.04297 0.311464 9.35443 0 9.73864 0H15.304C15.6882 0 15.9997 0.311464 15.9997 0.695674V6.26106C15.9997 6.64527 15.6882 6.95674 15.304 6.95674Z" />
+                                                        <path
+                                                            d="M6.26106 16.0004H0.695674C0.311464 16.0004 0 15.689 0 15.3048V9.73937C0 9.35517 0.311464 9.0437 0.695674 9.0437H6.26106C6.64527 9.0437 6.95674 9.35517 6.95674 9.73937V15.3048C6.95674 15.689 6.64527 16.0004 6.26106 16.0004Z" />
+                                                        <path
+                                                            d="M15.304 16.0004H9.73864C9.35443 16.0004 9.04297 15.689 9.04297 15.3048V9.73937C9.04297 9.35517 9.35443 9.0437 9.73864 9.0437H15.304C15.6882 9.0437 15.9997 9.35517 15.9997 9.73937V15.3048C15.9997 15.689 15.6882 16.0004 15.304 16.0004Z" />
+                                                    </svg>
+                                                </a></li>
+                                            <li><a class="active" th:href="@{/jobs?type=2}">
+                                                    <svg width="22" height="16" viewBox="0 0 22 16"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.91313 0C0.856731 0 0 0.893707 0 1.99656C0 3.09861 0.856731 3.99157 1.91313 3.99157C2.96953 3.99157 3.82626 3.09861 3.82626 1.99656C3.82626 0.893707 2.96953 0 1.91313 0Z" />
+                                                        <path
+                                                            d="M1.91313 6.00464C0.856731 6.00464 0 6.8976 0 8.00045C0 9.1025 0.856731 9.99621 1.91313 9.99621C2.96953 9.99621 3.82626 9.1025 3.82626 8.00045C3.82626 6.8976 2.96953 6.00464 1.91313 6.00464Z" />
+                                                        <path
+                                                            d="M1.91313 12.0085C0.856731 12.0085 0 12.9023 0 14.0043C0 15.1064 0.856731 16.0001 1.91313 16.0001C2.96953 16.0001 3.82626 15.1064 3.82626 14.0043C3.82626 12.9023 2.96953 12.0085 1.91313 12.0085Z" />
+                                                        <path
+                                                            d="M20.561 0.495117H6.95229C6.15787 0.495117 5.51367 1.16716 5.51367 1.99665C5.51367 2.82545 6.15782 3.49744 6.95229 3.49744H20.561C21.3554 3.49744 21.9996 2.82545 21.9996 1.99665C21.9996 1.16716 21.3554 0.495117 20.561 0.495117Z" />
+                                                        <path
+                                                            d="M20.561 6.49878H6.95229C6.15787 6.49878 5.51367 7.17077 5.51367 8.00032C5.51367 8.82911 6.15782 9.5011 6.95229 9.5011H20.561C21.3554 9.5011 21.9996 8.82911 21.9996 8.00032C21.9996 7.17077 21.3554 6.49878 20.561 6.49878Z" />
+                                                        <path
+                                                            d="M20.561 12.5034H6.95229C6.15787 12.5034 5.51367 13.1754 5.51367 14.0042C5.51367 14.833 6.15782 15.5049 6.95229 15.5049H20.561C21.3554 15.5049 21.9996 14.833 21.9996 14.0042C21.9996 13.1754 21.3554 12.5034 20.561 12.5034Z" />
+                                                    </svg>
+                                                </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            
+                            <div th:each="item : ${jobs}" class="col-lg-12 mb-30">
+                                <div class="job-listing-card">
+                                    <div class="job-top">
+                                        <div class="job-list-content">
+                                            <div class="company-area">
+                                                <div class="logo">
+                                                    <img th:src="@{${item.getCompanyLogo()}}" alt>
+                                                </div>
+                                                <div class="company-details">
+                                                    <div class="name-location">
+                                                        <h5><a href="job-details.html">[[${item.getJobTitle()}]]</a></h5>
+                                                        <p><a href="company-details.html">[[${item.getCompanyName()}]]</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="job-discription">
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="title">Salary:</span> [[${item.getSalary()}]] </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="title">Deadline:</span> [[${item.getEndDate()}]]</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="job-discription">
+                                                <ul>
+                                                    <li>
+                                                        <p><span class="title">vacancies:</span> [[${item.getAvaliblePosts()}]] </p>
+                                                    </li>
+                                                    <li>
+                                                        <p><span class="title">Experience:</span> [[${item.getExperience()}]]</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job-type-apply">
+                                        <div class="job-type">
+                                            <span class="light-green">[[${item.getJobType()}]]</span>
+                                        </div>
+                                        <div class="apply-btn">
+                                            <a th:href="@{/job-details/}+${item.getJobId()}"><span><img
+                                                        th:src="@{/images/icon/apply-ellipse.svg}" alt></span>Apply
+                                                Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <div class="pagination-area">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" href="#"
+                                                    tabindex="-1"></a></li>
+                                            <li class="page-item active" aria-current="page"><a class="page-link"
+                                                    href="#">01</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                            <li class="page-item"><a class="page-link" href="#"></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

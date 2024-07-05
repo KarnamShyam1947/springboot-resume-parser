@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Companies</title>
+
+    <div layout:fragment="content">
+        <div class="company-listing-area pt-120 mb-120">
+            <div class="container">
+                <div class="row g-lg-4 gy-5 align-items-center justify-content-center">
+                    <div class="col-lg-8 order-lg-2 order-1">
+                        <div class="company-listing-wrap">
+                            <div class="row g-4 mb-25 justify-content-center">
+                                <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                                    <p class="show-item">Showing results 10 in 200 jobs list</p>
+                                </div>
+                            </div>
+                            <div class="row gy-5 mb-70 justify-content-center">
+                                
+                                <div th:each="item : ${companies}" class="col-md-6 col-sm-10">
+                                    <div class="company-listing-card2">
+                                        <div class="company-area">
+                                            <span></span>
+                                            <div class="logo">
+                                                <img th:src="@{${item.getLogoUrl()}}" alt>
+                                            </div>
+                                            <div class="company-details">
+                                                <div class="name-location">
+                                                    <h5><a th:href="@{/company-details/}+${item.getId()}">[[${item.getName()}]]</a></h5>
+                                                    <ul>
+                                                        <li><img th:src="@{/images/icon/location.svg}" alt> [[${item.getAddress()}]]</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="job-details-vacancies">
+                                            <div class="vacancies">
+                                                <!-- <p>Vacancies: <span>10</span></p> -->
+                                            </div>
+                                            <div class="apply-btn">
+                                                <a th:href="@{/company-details/}+${item.getId()}">View Details<span><img
+                                                            th:src="@{/images/icon/apply-ellipse.svg}" alt></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <div class="pagination-area">
+                                        <nav aria-label="...">
+                                            <ul class="pagination">
+                                                <li class="page-item disabled"><a class="page-link" href="#"
+                                                        tabindex="-1"></a></li>
+                                                <li class="page-item active" aria-current="page"><a class="page-link"
+                                                        href="#">01</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                                <li class="page-item"><a class="page-link" href="#"></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+    
+    <title layout:fragment="title">JOBES | Register</title>
+
+    <div layout:fragment="content">
+        <div class="register-area pt-120 mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-wrapper">
+                            <div class="form-title">
+                                <h3>Register Account</h3>
+                                <span></span>
+                            </div>
+                            <div class="register-tab">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <button class="nav-link active">
+                                            <a href="/auth/register">Candidate</a>
+                                        </button>
+                                        <button class="nav-link">
+                                            <a href="/auth/register-company">Company</a>
+                                        </button>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                        aria-labelledby="nav-home-tab">
+                                        <form action="/auth/register" method="post" th:object="${userDto}">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="username">User Name*</label>
+                                                        <div 
+                                                            class="input-area" 
+                                                            th:classappend="${#fields.hasErrors('name')} ? 'error' : '' ">
+
+                                                            <img src="assets/images/icon/user-2.svg" alt>
+                                                            <input 
+                                                                type="text" 
+                                                                id="username" 
+                                                                name="username"
+                                                                th:value="*{name}"
+                                                                placeholder="Enter your Name">
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{name}"></span>
+                                                </div>
+
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner ">
+                                                        <label for="email">Email*</label>
+                                                        <div 
+                                                            class="input-area" 
+                                                            th:classappend="${#fields.hasErrors('email')} ? 'error' : '' ">
+
+                                                            <img src="assets/images/icon/email-2.svg" alt>
+                                                            <input 
+                                                                type="text" 
+                                                                id="email" 
+                                                                name="email"
+                                                                th:value="*{email}"
+                                                                placeholder="Enter your email">
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{email}"></span>
+                                                </div>
+
+                                                <div class="col-md-6 mb-25">
+                                                    <div class="form-inner">
+                                                        <label for="password">Password*</label>
+                                                        <input 
+                                                            type="password" 
+                                                            name="password" 
+                                                            id="password"
+                                                            th:errorclass="error"
+                                                            placeholder="Password" />
+
+                                                        <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{password}"></span>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-inner">
+                                                        <label for="password2">Confirm Password*</label>
+                                                        <input 
+                                                            type="password" 
+                                                            name="reenterPassword" 
+                                                            id="password2"
+                                                            th:errorclass="error"
+                                                            placeholder="Confirm Password" />
+
+                                                        <i class="bi bi-eye-slash" id="togglePassword2"></i>
+                                                    </div>
+                                                    <span class="text-danger" th:errors="*{reenterPassword}"></span>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div
+                                                        class="form-agreement form-inner d-flex justify-content-between flex-wrap">
+                                                        <div class="form-group two">
+                                                            <input type="checkbox" id="html1" name="tac">
+                                                            <label for="html1">Here, I will agree company <a href="#">terms &
+                                                                conditions.</a></label>
+                                                            <span class="text-danger" th:errors="*{tac}"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="form-inner">
+                                                        <button class="primry-btn-2" type="submit">Sign Up</button>
+                                                    </div>
+                                                </div>
+                                                <h6>Already have an account? <a href="login.html"> Login</a> Here</h6>
+                                                <div class="login-difarent-way">
+                                                    <div class="row g-4">
+                                                        <div class="col-md-6">
+                                                            <a href="/oauth2/authorization/google"><img
+                                                                    th:src="@{/images/icon/google1.svg}" alt>Log in with
+                                                                Google</a>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <a href="/oauth2/authorization/github"><img
+                                                                    th:src="@{/images/icon/github-2.png}" alt>Log in with
+                                                                Github</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>    
+    
