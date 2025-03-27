@@ -37,3 +37,4 @@ secret.txt
 api.py
 
 *.sql
+*.db

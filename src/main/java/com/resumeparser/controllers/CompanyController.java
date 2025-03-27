@@ -38,6 +38,9 @@ public class CompanyController {
     @GetMapping("/update")
     public String renderUpdate(Model model) {
         UpdateDTO updateDTO = modelMapper.map(userService.getCurrentUser(), UpdateDTO.class);
+        System.out.println("\nI am here : " + userService.getCurrentUser());
+        System.out.println("\nI am here : " + updateDTO);
+
         model.addAttribute("updateDTO", updateDTO);
         
         return "company/update";

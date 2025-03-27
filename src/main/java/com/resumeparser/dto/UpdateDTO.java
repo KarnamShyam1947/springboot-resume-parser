@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateDTO {
 
+    private String email;
     private String address;
     private String twitter;
     private String linkedin;

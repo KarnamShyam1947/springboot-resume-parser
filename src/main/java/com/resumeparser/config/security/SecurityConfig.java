@@ -30,6 +30,7 @@ public class SecurityConfig {
         "images/**",
         "js/**",
         "webfonts/**",
+        "assets/**",
         "test",
         "contact"
     };
@@ -73,7 +74,7 @@ public class SecurityConfig {
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .loginProcessingUrl("/process-login")
-                        .defaultSuccessUrl("/")
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
         );
 

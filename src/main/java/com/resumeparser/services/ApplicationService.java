@@ -22,7 +22,7 @@ public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
     private final UserService userService;
-    private final S3Service s3Service;
+    // private final S3Service s3Service;
     private final ModelMapper mapper;
 
     public ApplicationEntity addApplication(
@@ -31,7 +31,8 @@ public class ApplicationService {
 
         if (applicationDTO.getFile() != null && !applicationDTO.getFile().isEmpty()) {
             String uuid = UUID.randomUUID().toString();
-            String profileUrl = s3Service.uploadFile(applicationDTO.getFile(), "resumes/"+uuid);
+            // String profileUrl = s3Service.uploadFile(applicationDTO.getFile(), "resumes/"+uuid);
+            String profileUrl = "";
 
             int id = userService.getCurrentUser().getId();
             

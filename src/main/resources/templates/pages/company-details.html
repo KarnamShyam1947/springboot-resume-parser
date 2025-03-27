@@ -133,7 +133,7 @@
                                         <span class="light-yellow">[[${item.getJobType()}]]</span>
                                     </div>
                                     <div class="apply-btn">
-                                        <a href="job-details.html"><span><img th:src="@{/images/icon/apply-ellipse.svg}"
+                                        <a th:href="@{/job-details/}+${item.id}"><span><img th:src="@{/images/icon/apply-ellipse.svg}"
                                                     alt></span>Apply Now</a>
                                     </div>
                                 </div>
