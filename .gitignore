@@ -38,3 +38,5 @@ api.py
 
 *.sql
 *.db
+
+.env

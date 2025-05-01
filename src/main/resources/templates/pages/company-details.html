@@ -98,8 +98,8 @@
                                             </div>
                                             <div class="company-details">
                                                 <div class="name-location">
-                                                    <h5><a href="job-details.html">[[${item.getJobTitle()}]]</a></h5>
-                                                    <p><a href="company-details.html">[[${user.getCompany().getName()}]]</a></p>
+                                                    <h5><a th:href="@{/job-details/}+${item.id}">[[${item.getJobTitle()}]]</a></h5>
+                                                    <p><a href="#">[[${user.getCompany().getName()}]]</a></p>
                                                 </div>
                                             </div>
                                         </div>

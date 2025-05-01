@@ -63,7 +63,7 @@ public class UserController {
         applicationService.addApplication(applicationDTO);
         session.setAttribute("applied", "application submitted successfully");
 
-        return "redirect:/";
+        return "redirect:/user/applications";
     }
 
     @GetMapping("/dashboard")

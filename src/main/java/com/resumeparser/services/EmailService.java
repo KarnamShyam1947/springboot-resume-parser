@@ -46,7 +46,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
         try {
-            helper.setFrom("YOUR_MAIL_ID", "Admin");
+            helper.setFrom("karnam.shyam2004@gmail.com", "Admin");
             helper.setTo(user.getEmail());
             helper.setSubject("User activation email");
 
@@ -84,7 +84,7 @@ public class EmailService {
             link = link + "/auth/validate-token/"+user.getUniqueToken();
             map.put("link", link);
 
-            helper.setFrom("YOUR_MAIL_ID", "Admin");
+            helper.setFrom("karnam.shyam2004@gmail.com", "Admin");
             helper.setTo(user.getEmail());
             helper.setSubject("Forgot password email");
 

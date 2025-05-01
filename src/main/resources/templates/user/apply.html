@@ -77,25 +77,25 @@
         form.onsubmit = async function (e) {
             loading.style.display = "block";
             submitBtn.style.display = "none";
-            scoreInput.value = "45.96";
+            // scoreInput.value = "45.96";
             
-            // e.preventDefault();
-            // var formData = new FormData();
-            // formData.append("file", file.files[0]);
-            // formData.append("jd", jd);
+            e.preventDefault();
+            var formData = new FormData();
+            formData.append("file", file.files[0]);
+            formData.append("jd", jd);
 
-            // try {
-            //     const response = await fetch(serviceUrl.value, {
-            //         method: 'POST',
-            //         body: formData
-            //     });
-            //     const data = await response.json();
-            //     console.log(data);
-            //     scoreInput.value = data.score;
-            //     form.submit();
-            // } catch (error) {
-            //     console.error(error);
-            // }
+            try {
+                const response = await fetch(`${serviceUrl.value}parse/`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                console.log(data);
+                scoreInput.value = data.score;
+                form.submit();
+            } catch (error) {
+                console.error(error);
+            }
 
             console.log("okk");
         };
