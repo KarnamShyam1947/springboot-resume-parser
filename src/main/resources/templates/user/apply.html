@@ -85,7 +85,7 @@
             formData.append("jd", jd);
 
             try {
-                const response = await fetch(`${serviceUrl.value}parse/`, {
+                const response = await fetch(`${serviceUrl.value}`, {
                     method: 'POST',
                     body: formData
                 });

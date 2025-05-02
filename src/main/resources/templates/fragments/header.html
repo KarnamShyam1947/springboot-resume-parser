@@ -42,8 +42,8 @@
                         <a th:href="@{/}">Home</a>
                     </li>
 
-                    <li th:class="${@requestUtils.getCurrentUrl() == '/jobs' ? 'active':''}">
-                        <a th:href="@{/jobs}">Jobs</a>
+                    <li th:class="${@requestUtils.getCurrentUrl() == '/jobs-list' ? 'active':''}">
+                        <a th:href="@{/jobs-list}">Jobs</a>
                     </li>
                     
                     <li th:class="${@requestUtils.getCurrentUrl() == '/companies' ? 'active':''}">

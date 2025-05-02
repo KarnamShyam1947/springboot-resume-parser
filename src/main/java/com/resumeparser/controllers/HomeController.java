@@ -36,7 +36,7 @@ public class HomeController {
         return "pages/companies";
     }
     
-    @GetMapping("/jobs")
+    @GetMapping("/jobs-list")
     public String jobs(
         @RequestParam(name = "type", defaultValue = "0") String type, 
         Model model
